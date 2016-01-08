@@ -10,12 +10,17 @@
 #import "FoldTableViewController.h"
 #import "FriendCell.h"
 #import "GroupModel.h"
+#import <objc/runtime.h>
+char* const buttonKey = "buttonKey";
+
+
+
+#define DEGREES_TO_RADIANS(x) (M_PI * (x) / 180.0)
 
 @interface FoldTableViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView     *expandTable;
     NSMutableArray  *dataSource;
-    
     
 }
 
@@ -143,12 +148,24 @@
     UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(0, button.frame.size.height-1, button.frame.size.width, 1)];
     [line setImage:[UIImage imageNamed:@"line_real"]];
     [sectionView addSubview:line];
-    
-    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, (44-16)/2, 14, 16)];
-    [imgView setImage:[UIImage imageNamed:@"ico_list"]];
-    [sectionView addSubview:imgView];
-    
-    
+    if (groupModel.isOpened) {
+        UIImageView * _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, (44-16)/2, 14, 16)];
+        [_imgView setImage:[UIImage imageNamed:@"ico_list"]];
+        [sectionView addSubview:_imgView];
+        CGAffineTransform currentTransform = _imgView.transform;
+        CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, M_PI/2); // 在现在的基础上旋转指定角度
+        _imgView.transform = newTransform;
+        objc_setAssociatedObject(button, buttonKey, _imgView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+    }else{
+        UIImageView * _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, (44-16)/2, 14, 16)];
+        [_imgView setImage:[UIImage imageNamed:@"ico_list"]];
+        [sectionView addSubview:_imgView];
+        objc_setAssociatedObject(button, buttonKey, _imgView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+    }
+  
+
     
     UILabel *numberLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-40, (44-20)/2, 40, 20)];
     [numberLabel setBackgroundColor:[UIColor clearColor]];
@@ -176,7 +193,38 @@
 - (void)buttonPress:(UIButton *)sender//headButton点击
 {
     GroupModel *groupModel = dataSource[sender.tag];
+    UIImageView *imageView =  objc_getAssociatedObject(sender,buttonKey);
+
+    
+    if (groupModel.isOpened) {
+            [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionTransitionNone animations:^{
+                CGAffineTransform currentTransform = imageView.transform;
+                CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, -M_PI/2); // 在现在的基础上旋转指定角度
+                imageView.transform = newTransform;
+
+
+            } completion:^(BOOL finished) {
+                
+
+            }];
+        
+        
+        
+    }else{
+        
+            [UIView animateWithDuration:0.3 delay:0.0 options: UIViewAnimationOptionAllowUserInteraction |UIViewAnimationOptionCurveLinear animations:^{
+
+                CGAffineTransform currentTransform = imageView.transform;
+                CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, M_PI/2); // 在现在的基础上旋转指定角度
+                imageView.transform = newTransform;
+            
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+
     groupModel.isOpened = !groupModel.isOpened;
+
     [expandTable reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
