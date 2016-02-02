@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70A0785A1C60981600F8C188 /* QQList.gif in Resources */ = {isa = PBXBuildFile; fileRef = 70A078591C60981600F8C188 /* QQList.gif */; };
 		70A539021C3F4B4B0090AD52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A539011C3F4B4B0090AD52 /* main.m */; };
 		70A539051C3F4B4B0090AD52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A539041C3F4B4B0090AD52 /* AppDelegate.m */; };
 		70A539081C3F4B4C0090AD52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A539071C3F4B4C0090AD52 /* ViewController.m */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70A078591C60981600F8C188 /* QQList.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = QQList.gif; sourceTree = "<group>"; };
 		70A538FD1C3F4B4B0090AD52 /* ExpandTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpandTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A539011C3F4B4B0090AD52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		70A539031C3F4B4B0090AD52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				70A5392B1C3F56C30090AD52 /* ico_faq_d.png */,
 				70A539271C3F56A90090AD52 /* ico_listdown.png */,
+				70A078591C60981600F8C188 /* QQList.gif */,
 				70A539321C3F613C0090AD52 /* header.png */,
 				70A539281C3F56A90090AD52 /* ico_listup.png */,
 				70A539251C3F56930090AD52 /* line_real.png */,
@@ -197,6 +200,7 @@
 				70A539101C3F4B4C0090AD52 /* LaunchScreen.storyboard in Resources */,
 				70A539291C3F56A90090AD52 /* ico_listdown.png in Resources */,
 				70A539261C3F56930090AD52 /* line_real.png in Resources */,
+				70A0785A1C60981600F8C188 /* QQList.gif in Resources */,
 				70A5390D1C3F4B4C0090AD52 /* Assets.xcassets in Resources */,
 				70A5392A1C3F56A90090AD52 /* ico_listup.png in Resources */,
 				70A539311C3F5C580090AD52 /* FriendCell.xib in Resources */,
@@ -370,6 +374,7 @@
 				70A539161C3F4B4C0090AD52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
